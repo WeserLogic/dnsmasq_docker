@@ -12,7 +12,6 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
       contents: read
       packages: write
@@ -27,6 +26,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker image x
         id: push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
@@ -34,10 +34,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/weserlogic/dnsmasq_docker:latest
-            ghcr.io/weserlogic/dnsmasq_docker:trixie-slim
-          labels: |
-            org.opencontainers.image.title="dnsmasq-docker"
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v3
         with:

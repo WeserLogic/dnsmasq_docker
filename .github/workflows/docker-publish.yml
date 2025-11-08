@@ -34,8 +34,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository) }}:latest
-            ghcr.io/${{ toLower(github.repository) }}:trixie-slim
+            dnsmasq_docker:latest
+            dnsmasq_docker:trixie-slim
           labels: |
             org.opencontainers.image.title="dnsmasq-docker"
       - name: Generate artifact attestation

@@ -33,9 +33,9 @@ jobs:
         with:
           context: .
           push: true
-          #tags: |
-          #  dnsmasq_docker:latest
-          #  dnsmasq_docker:trixie-slim
+          tags: |
+            ghcr.io/weserlogic/dnsmasq_docker:latest
+            ghcr.io/weserlogic/dnsmasq_docker:trixie-slim
           labels: |
             org.opencontainers.image.title="dnsmasq-docker"
       - name: Generate artifact attestation

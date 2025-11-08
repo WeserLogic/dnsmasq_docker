@@ -1,0 +1,13 @@
+services:
+  dnsmasq:
+    build: .
+    container_name: dnsmasq
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    volumes:
+      - ./sample.dnsmasq.d/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./sample.dnsmasq.d/hosts:/etc/dnsmasq.d/hosts
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
